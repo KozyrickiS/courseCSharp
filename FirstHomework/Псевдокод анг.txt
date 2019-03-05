@@ -1,0 +1,70 @@
+alg Booking(arg let purpose, arg date check-in, check-out, arg int room, adults, children, arg log job, arg let conditions, res lit  output)
+given 	purpose - where are you going
+	check-in - date check-in
+	check-out - date check-out
+	room - quantity of numbers, adults - quantity of adults people, children - quantity of children
+	job - are you travelling for work(true) or not(false)
+	conditions - conditions we are select to living
+need 	Booking room(s) for travelling to London
+start
+    let adds
+    adds := "booking.com"
+    input adds
+    let flag
+    flag := “No”
+	if you are registered on this site
+	then
+		if you are sign in on this site
+		then Flag := “Yes”
+		else Flag := “No”
+    choice Category = Accommodation
+    input purpose
+	if purpose != "London"
+	then output := "Wrong city"
+    input check-in, check-out
+	if check-in > check-out
+	then check-in := check-out
+	     and check-out := null
+    input room
+    SC
+	while Hotel Rooms to booking != room
+	      Hotel Rooms to booking++
+    EC
+    input adults
+    SC
+	while adults in booking != adults
+	      adults in booking++
+    EC
+    input children
+    SC
+	while children in booking != children
+	      children in booking++
+    EC
+    input job
+	if job == true 
+	then checkbox "I'm travelling for work" is On
+	else checkbox "I'm travelling for work" is Off
+    click button "Search"
+	if Flag == "Yes" 
+	then You have more exclusive secret deals
+	     You get a more personalised search	
+    SC
+	while Page loading
+	      We are waiting
+    EC
+    arr A - array of recommended apartment with dimension n
+    int i
+    log home
+    i := 1
+    home := "false"
+    SC
+	while (i <= n+1) or (home := "false")
+	      	if (A[i].(conditions we are select) == conditions)
+		then Booking
+		     and home := "True"
+		else i++;
+    EC
+	if home == "true" 
+	then output := "Ñongratulations. You are booked a room in London"
+	else output := "There is no appropriate housing. Stay at home"  
+end
