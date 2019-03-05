@@ -1,7 +1,0 @@
-D:\ProjectsSergey\ForStart\XmlDoc\XmlDoc\bin\Debug\XmlDoc.exe.config
-D:\ProjectsSergey\ForStart\XmlDoc\XmlDoc\bin\Debug\XmlDoc.exe
-D:\ProjectsSergey\ForStart\XmlDoc\XmlDoc\bin\Debug\XmlDoc.pdb
-D:\ProjectsSergey\ForStart\XmlDoc\XmlDoc\obj\Debug\XmlDoc.csprojAssemblyReference.cache
-D:\ProjectsSergey\ForStart\XmlDoc\XmlDoc\obj\Debug\XmlDoc.csproj.CoreCompileInputs.cache
-D:\ProjectsSergey\ForStart\XmlDoc\XmlDoc\obj\Debug\XmlDoc.exe
-D:\ProjectsSergey\ForStart\XmlDoc\XmlDoc\obj\Debug\XmlDoc.pdb
