@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirSimulation
+namespace Air_Simulation
 {
     class Program
     {
@@ -14,6 +14,6 @@ namespace AirSimulation
             simulation.HelloByTime();
             simulation.ArportSim();
             Console.ReadKey();
-        }               
+        }
     }
 }
