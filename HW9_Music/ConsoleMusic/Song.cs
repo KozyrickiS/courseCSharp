@@ -37,12 +37,13 @@ namespace ConsoleMusic
             {
                 Title = song.title,
                 SongMinutes = song.duration.Minutes,
-                AlbumYear = song.releaseDate.Year
+                AlbumYear = song.releaseDate.Year,
+                SongGenre = song.genre
             };
             return res;
         }
 
-        public static object GetSongDataByTitle(string title)
+        public static dynamic GetSongDataByTitle(string title)
         {
             Song song = new Song();
             List<Song> database = DBSongs();

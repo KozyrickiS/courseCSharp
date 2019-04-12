@@ -20,25 +20,23 @@ namespace ConsoleMusic
             Song song2 = new Song("DasPish", 4, 2004);
             Song song3 = new Song("HellBrokeLuce", 3, "Tom Waits", 2000, Genre.Blues);
 
-            var item = Song.GetSongData(song);
-            Console.WriteLine(item);
-            Console.WriteLine(item.GetType());
-            var output = JsonConvert.SerializeObject(item);
+            Console.WriteLine(Song.GetSongData(song));
+            Console.WriteLine(Song.GetSongData(song).GetType());
+            var output = JsonConvert.SerializeObject(Song.GetSongData(song));
             Console.WriteLine(output);
 
-            var item2 = Song.GetSongData(song2);
-            Console.WriteLine(item2);
-            var output2 = JsonConvert.SerializeObject(item2, Formatting.Indented);
+            Console.WriteLine(Song.GetSongData(song2));
+            var output2 = JsonConvert.SerializeObject(Song.GetSongData(song2), Formatting.Indented);
             Console.WriteLine(output2);
 
-            var item3 = Song.GetSongData(song3);
-            Console.WriteLine(item3);
-            var output3 = JsonConvert.SerializeObject(item3, Formatting.None);
+            var itemBySong = Song.GetSongData(song3);
+            Console.WriteLine(itemBySong);
+            var output3 = JsonConvert.SerializeObject(itemBySong, Formatting.None);
             Console.WriteLine(output3);
 
-            var item4 = Song.GetSongDataByTitle("Creep");
-            Console.WriteLine(item4);
-            var output4 = JsonConvert.SerializeObject(item4, Formatting.Indented);
+            var itemByTitle = Song.GetSongDataByTitle("Creep");
+            Console.WriteLine(itemByTitle);
+            var output4 = JsonConvert.SerializeObject(itemByTitle, Formatting.Indented);
             Console.WriteLine(output4);
 
             Console.ReadKey();
