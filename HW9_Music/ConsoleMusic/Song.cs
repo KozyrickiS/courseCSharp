@@ -8,37 +8,40 @@ namespace ConsoleMusic
 {
     class Song
     {
-        public string title { get; set; }
-        public TimeSpan duration { get; set; }
-        public string composer { get; set; }
-        public DateTime releaseDate { get; set; }
-        public Genre genre { get; set; }
-        public Song()
-        { }
+        public string Title { get; set; }
+        public TimeSpan Duration { get; set; }
+        public string Composer { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public Genre Genre { get; set; }
+        public Song(string title, string composer)
+        {
+            this.Title = title;
+            this.Composer = composer;
+        }
         public Song(string title, int minutes, int year)
         {
-            this.title = title;
-            this.duration = TimeSpan.FromMinutes(minutes);
-            this.releaseDate = new DateTime(year, 01, 01);
-            genre = Genre.None;
+            this.Title = title;
+            this.Duration = TimeSpan.FromMinutes(minutes);
+            this.ReleaseDate = new DateTime(year, 01, 01);
+            Genre = Genre.None;
         }
         public Song(string title, int minutes, string composer, int year, Genre genre)
         {
-            this.title = title;
-            this.duration = TimeSpan.FromMinutes(minutes);
-            this.composer = composer;
-            this.releaseDate = new DateTime(year, 01, 01);
-            this.genre = genre;
+            this.Title = title;
+            this.Duration = TimeSpan.FromMinutes(minutes);
+            this.Composer = composer;
+            this.ReleaseDate = new DateTime(year, 01, 01);
+            this.Genre = genre;
         }
 
         public static object GetSongData(Song song)
         {
             var res = new
             {
-                Title = song.title,
-                SongMinutes = song.duration.Minutes,
-                AlbumYear = song.releaseDate.Year,
-                SongGenre = song.genre
+                Title = song.Title,
+                SongMinutes = song.Duration.Minutes,
+                AlbumYear = song.ReleaseDate.Year,
+                SongGenre = song.Genre
             };
             return res;
         }
@@ -49,18 +52,18 @@ namespace ConsoleMusic
             List<Song> database = DBSongs();
             for (int i = 0; i < database.Count; i++)
             {
-                if (title.Equals(database[i].title))
+                if (title.Equals(database[i].Title))
                 {
                     song = database[i];
                 }
             }
             var res = new
             {
-                Title = song.title,
-                Composer = song.composer,
-                SongSeconds = song.duration.Seconds,
-                AlbumYear = song.releaseDate.Year,
-                SongGenre = song.genre
+                Title = song.Title,
+                Composer = song.Composer,
+                SongSeconds = song.Duration.Seconds,
+                AlbumYear = song.ReleaseDate.Year,
+                SongGenre = song.Genre
             };
             return res;
         }
@@ -90,7 +93,6 @@ namespace ConsoleMusic
             songs.Add(song9);
             Song song10 = new Song("T.N.T.", 3, "AC/DC", 1975, Genre.Rock);
             songs.Add(song10);
-
             return songs;
         }
 
