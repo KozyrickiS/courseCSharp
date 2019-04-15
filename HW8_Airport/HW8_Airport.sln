@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Air_Simulation", "Air_Simulation\Air_Simulation.csproj", "{35C7B951-E395-4F65-9BC8-4D54AEC0BABC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35C7B951-E395-4F65-9BC8-4D54AEC0BABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C7B951-E395-4F65-9BC8-4D54AEC0BABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C7B951-E395-4F65-9BC8-4D54AEC0BABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C7B951-E395-4F65-9BC8-4D54AEC0BABC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {959603C7-75FD-44D4-A00B-537D794363D2}
+	EndGlobalSection
+EndGlobal
