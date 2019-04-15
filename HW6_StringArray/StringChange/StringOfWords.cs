@@ -4,60 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task6_2
+namespace StringChange
 {
-    class Program
+    public class StringOfWords
     {
-        static void Main(string[] args)
+        public string wordLine { get; set; }
+        public StringOfWords()
+        { }
+        public StringOfWords(string wordLine)
         {
-            Console.WriteLine("Enter the line of words and split this words with 'space': ");
-            string wordLine = Console.ReadLine();
-            Console.WriteLine("You may choose what to do whith your array of words:");
-            Console.WriteLine("1.	Remove the longest word");
-            Console.WriteLine("2.	Swap the longest word with the shortest word");
-            Console.WriteLine("3.	Count english and russian letters, spaces and other signs");
-            Console.WriteLine("4.	Sort array of words descending");
-            Console.WriteLine("Press the number from 1 to 4: ");
-            if (int.TryParse(Console.ReadLine(), out int chosenMethod))
-            {
-                switch (chosenMethod)
-                {
-                    case 1:
-                        {
-                            KillLongestWord(wordLine);
-                            break;
-                        }
-                    case 2:
-                        {
-                            ReplaseLongAndShortWord(wordLine);
-                            break;
-                        }
-                    case 3:
-                        {
-                            CalculationString(wordLine);
-                            break;
-                        }
-                    case 4:
-                        {
-                            SortStringArray(wordLine);
-                            break;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("This is not a number from 1 to 4!");
-                            break;
-                        }
-                }
-            }
-            else
-            {
-                Console.WriteLine("This is not a number!");
-            }
-            Console.ReadKey();
+            this.wordLine = wordLine;
         }
-        private static void KillLongestWord(string stringOfWords)
+        public void KillLongestWord()
         {
-            string[] wordsArray = stringOfWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] wordsArray = wordLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             string longestWord = wordsArray[0];
             int longestLength = 0;
             string[] newWordArray = new string[wordsArray.Length - 1];
@@ -69,22 +29,20 @@ namespace Task6_2
                     longestLength = wordsArray[i].Length;
                 }
             }
-
             for (int i = 0; i < wordsArray.Length; i++)
             {
                 if (wordsArray[i].Length == longestLength)
                 {
-                    stringOfWords = stringOfWords.Replace(wordsArray[i], String.Empty);
+                    wordLine = wordLine.Replace(wordsArray[i], String.Empty);
 
                 }
             }
-            stringOfWords = string.Join(" ", stringOfWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-            Console.WriteLine(stringOfWords);
+            wordLine = string.Join(" ", wordLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            Console.WriteLine(wordLine);
         }
-        private static void ReplaseLongAndShortWord(string stringOfWords)
+        public void ReplaseLongAndShortWord()
         {
-            string[] wordsArray = stringOfWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
+            string[] wordsArray = wordLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int longestLength = wordsArray[0].Length;
             int shortestLength = wordsArray[0].Length;
             for (int i = 0; i < wordsArray.Length; i++)
@@ -123,13 +81,12 @@ namespace Task6_2
                     }
                 }
             }
-
-            stringOfWords = String.Join(" ", wordsArray);
-            Console.WriteLine(stringOfWords);
+            wordLine = String.Join(" ", wordsArray);
+            Console.WriteLine(wordLine);
         }
-        private static void CalculationString(string stringOfWords)
+        public void CalculationString()
         {
-            char[] charArray = stringOfWords.ToCharArray();
+            char[] charArray = wordLine.ToCharArray();
             int countSmallENGLetters = 0;
             int countBigENGLetters = 0;
             int countSmallRUSLetters = 0;
@@ -165,9 +122,9 @@ namespace Task6_2
             }
             Console.WriteLine("In our StringLine we have: big english letters = " + countBigENGLetters + ", small english letters = " + countSmallENGLetters + ", big russian letters = " + countBigRUSLetters + ", small russian letters = " + countSmallRUSLetters + ", spaces = " + countOfSpaces + " and other signs = " + countOfSign);
         }
-        private static void SortStringArray(string stringOfWords)
+        public void SortStringArray()
         {
-            string[] wordsArray = stringOfWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] wordsArray = wordLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 0; i < wordsArray.Length; i++)
             {
@@ -181,9 +138,8 @@ namespace Task6_2
                     }
                 }
             }
-
-            stringOfWords = String.Join(" ", wordsArray);
-            Console.WriteLine(stringOfWords);
+            wordLine = String.Join(" ", wordsArray);
+            Console.WriteLine(wordLine);
         }
     }
 }
