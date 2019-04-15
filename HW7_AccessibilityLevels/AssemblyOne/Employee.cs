@@ -12,7 +12,7 @@ namespace AssemblyOne
         public string lastname;
         public DateTime BirthDate;
         public DateTime dateOfEmployment;
-        private const string position = "Employee";
+        private const string Position = "Employee";
 
         public const string CompanyNamePublic = "ООО Печенька";
         protected const string CompanyNameProtected = "ООО Протектед Печенька";
@@ -65,12 +65,12 @@ namespace AssemblyOne
         }
         public virtual void GetConst()    // used in all projects
         {
-            Console.WriteLine($"Public const CompanyNamePublic: {CompanyNamePublic} is available in class {position}");
-            Console.WriteLine($"protected const CompanyNameProtected: {CompanyNameProtected} is available in class {position}");
-            Console.WriteLine($"internal const CompanyNameInternal: {CompanyNameInternal} is available in class {position}");
-            Console.WriteLine($"protected internal const CompanyNameProtInternal: {CompanyNameProtInternal} is available in class {position}");
-            Console.WriteLine($"private const CompanyNamePrivate {CompanyNamePrivate} is available in class {position}");
-            Console.WriteLine($"private protected const CompanyNamePrivProtected: {CompanyNamePrivProtected} is available in class {position}");
+            Console.WriteLine($"Public const CompanyNamePublic: {CompanyNamePublic} is available in class {Position}");
+            Console.WriteLine($"protected const CompanyNameProtected: {CompanyNameProtected} is available in class {Position}");
+            Console.WriteLine($"internal const CompanyNameInternal: {CompanyNameInternal} is available in class {Position}");
+            Console.WriteLine($"protected internal const CompanyNameProtInternal: {CompanyNameProtInternal} is available in class {Position}");
+            Console.WriteLine($"private const CompanyNamePrivate {CompanyNamePrivate} is available in class {Position}");
+            Console.WriteLine($"private protected const CompanyNamePrivProtected: {CompanyNamePrivProtected} is available in class {Position}");
         }
         public int Age()    // used in all projects
         {
@@ -78,7 +78,7 @@ namespace AssemblyOne
             if ((BirthDate.Month > DateTime.Now.Month) || (BirthDate.Month == DateTime.Now.Month && BirthDate.Day >= DateTime.Now.Day))
             {
                 age -= 1;
-            }            
+            }
             return age;
         }
     }

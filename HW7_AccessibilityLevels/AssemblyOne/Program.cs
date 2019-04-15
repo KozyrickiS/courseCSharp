@@ -15,7 +15,6 @@ namespace AssemblyOne
             Developer developer = new Developer();
             //developer.GetConst();
             //developer.GetInfoAboutEmployment();
-
             developer.AddEmployee();
             developer.GetInfoAboutEmployment();
             Console.WriteLine("Developer age is " + developer.Age());

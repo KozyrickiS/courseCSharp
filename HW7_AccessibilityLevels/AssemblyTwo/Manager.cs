@@ -9,8 +9,7 @@ namespace AssemblyTwo
 {
     class Manager : Employee
     {
-        private const string position = "Manager";
-
+        private const string Position = "Manager";
         public override void GetInfoAboutEmployment()
         {
             if ((lastname != null) && (name != null))
@@ -20,7 +19,7 @@ namespace AssemblyTwo
             else
             {
                 Console.WriteLine("We don't have manager");
-            }            
+            }
         }
         public override void AddEmployee()
         {
@@ -44,12 +43,12 @@ namespace AssemblyTwo
         }
         public override void GetConst()
         {
-            Console.WriteLine($"Public const CompanyNamePublic: {CompanyNamePublic} is available in inheritor class {position}");
-            Console.WriteLine($"protected const CompanyNameProtected: {CompanyNameProtected} is available in inheritor class {position}");
-            Console.WriteLine($"internal const CompanyNameInternal is not available in inheritor class {position}");
-            Console.WriteLine($"protected internal const CompanyNameProtInternal: {CompanyNameProtInternal} is available in inheritor class {position}");
-            Console.WriteLine($"private const CompanyNamePrivate is not available in inheritor class {position}");
-            Console.WriteLine($"private protected const CompanyNamePrivProtected is not available in inheritor class {position}");
+            Console.WriteLine($"Public const CompanyNamePublic: {CompanyNamePublic} is available in inheritor class {Position}");
+            Console.WriteLine($"protected const CompanyNameProtected: {CompanyNameProtected} is available in inheritor class {Position}");
+            Console.WriteLine($"internal const CompanyNameInternal is not available in inheritor class {Position}");
+            Console.WriteLine($"protected internal const CompanyNameProtInternal: {CompanyNameProtInternal} is available in inheritor class {Position}");
+            Console.WriteLine($"private const CompanyNamePrivate is not available in inheritor class {Position}");
+            Console.WriteLine($"private protected const CompanyNamePrivProtected is not available in inheritor class {Position}");
         }
     }
 }

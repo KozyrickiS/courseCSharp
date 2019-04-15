@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FAD26886-2FDA-4994-AC3A-1D0F08BF82E9}</ProjectGuid>
+    <ProjectGuid>{7798B672-D79F-4AE4-A3C1-2EAAAF558029}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>AssemblyTwo</RootNamespace>
     <AssemblyName>AssemblyTwo</AssemblyName>
@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssemblyOne\AssemblyOne.csproj">
-      <Project>{f6bf6e77-9c6c-4bde-a10d-8a146970180c}</Project>
+      <Project>{a20af30c-3ab4-46a5-a54e-84e4939c3b19}</Project>
       <Name>AssemblyOne</Name>
     </ProjectReference>
   </ItemGroup>

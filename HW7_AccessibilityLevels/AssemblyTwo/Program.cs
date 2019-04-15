@@ -13,7 +13,6 @@ namespace AssemblyTwo
             Manager manager = new Manager();
             manager.GetConst();
             manager.GetInfoAboutEmployment();
-
             Console.ReadKey();
         }
     }
