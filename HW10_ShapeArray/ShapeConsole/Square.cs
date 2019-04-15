@@ -21,11 +21,13 @@ namespace ShapeConsole
         }
         public double Area()
         {
+            Logger.Log.Info($"Start calculation area for {name}");
             double area = this.side * this.side;
             return area;
         }
         public void Info()
         {
+            Logger.Log.Info($"Start output data for {name} to the console");
             Console.WriteLine($"This is {name}. CLR Type is \"{GetType()}\". Square is {Area()}");
         }
     }

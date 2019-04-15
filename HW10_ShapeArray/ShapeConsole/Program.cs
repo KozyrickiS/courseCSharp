@@ -10,6 +10,9 @@ namespace ShapeConsole
     {
         static void Main(string[] args)
         {
+            Logger.InitLogger();
+            Logger.Log.Info($"Start programm {System.Reflection.Assembly.GetEntryAssembly()}");
+            //or  Logger.Log.Info($"Start {System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName}");
             Circle circle = new Circle(4.14);
             Triangle triangle = new Triangle(2.33, 5.33, 4.44);
             Triangle triangle2 = new Triangle(2.33, 1);
@@ -36,8 +39,8 @@ namespace ShapeConsole
             Triangle triangle4n5 = new Triangle(4, 5);
             Algorithm.ShapesInfo(circleR4, circleR6n25, square12, triangle3n45, triangle3n5n6, triangle4n5);
             */
-
             Console.ReadKey();
+            Logger.Log.Info($"Successful completed { System.Reflection.Assembly.GetEntryAssembly()}");
         }
     }
 }

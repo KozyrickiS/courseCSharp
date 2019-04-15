@@ -22,7 +22,10 @@ namespace ShapeConsole
         public Triangle(double equalSide, double thirdSide)
         {
             if (thirdSide > equalSide * 2)
-             throw new ArgumentException("Isosceles Triangle with this sides can't exist"); 
+            {
+                Logger.Log.Error("Isosceles Triangle with this sides can't exist!");
+                throw new ArgumentException("Isosceles Triangle with this sides can't exist");
+            }
             name = "Isosceles Triangle";
             this.firstSide = equalSide;
             this.secondSide = equalSide;
@@ -34,8 +37,11 @@ namespace ShapeConsole
             double perimetr = firstSide + secondSide + thirdSide;
             foreach( var oneSide in sides)
             {
-                if ( oneSide > perimetr - oneSide)
+                if (oneSide > perimetr - oneSide)
+                {
+                    Logger.Log.Error("Triangle with this sides can't exist!");
                     throw new ArgumentException("Isosceles Triangle with this sides can't exist");
+                }
             }
             name = "Triangle";
             this.firstSide = firstSide;
@@ -49,12 +55,14 @@ namespace ShapeConsole
 
         public double Area()
         {
+            Logger.Log.Info($"Start calculation area for {name}");
             double semiPer = (this.firstSide + this.secondSide + this.thirdSide) / 2;
             double area = Math.Sqrt(semiPer * (semiPer - this.firstSide) * (semiPer - this.secondSide) * (semiPer - this.thirdSide));
             return area;
         }
         public void Info()
         {
+            Logger.Log.Info($"Start output data for {name} to the console");
             Console.WriteLine($"This is {name}. CLR Type is \"{GetType()}\". Square is {Area()}");
         }
     }

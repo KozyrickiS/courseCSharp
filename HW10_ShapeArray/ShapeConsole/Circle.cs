@@ -19,14 +19,15 @@ namespace ShapeConsole
         {
             Console.WriteLine($"Just imagine a circle with radius {this.radius}");
         }
-
         public double Area()
         {
+            Logger.Log.Info($"Start output data for {name} to the console");
             double area = Math.PI * this.radius * this.radius;
             return area;
         }
         public void Info()
         {
+            Logger.Log.Info($"Start calculation area for {name}");
             Console.WriteLine($"This is {name}. CLR Type is \"{GetType()}\". Square is {Area()}");
         }
     }
