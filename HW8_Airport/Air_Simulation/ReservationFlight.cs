@@ -35,7 +35,7 @@ namespace Air_Simulation
             ReservationFlight reserve4 = new ReservationFlight("Butusov", destinyCity[3], "669");
             ReservationFlight reserve5 = new ReservationFlight("Shkliarski", destinyCity[4], "670");
             ReservationFlight reserve6 = new ReservationFlight("Samoilov", destinyCity[1], "671");
-            ReservationFlight reserve7 = new ReservationFlight("Dolnik", placeAirport, destinyCity[0], "672");
+            ReservationFlight reserve7 = new ReservationFlight("Dolnik", PlaceAirport, destinyCity[0], "672");
             List<ReservationFlight> reserveList = new List<ReservationFlight>();
             reserveList.Add(reserve1);
             reserveList.Add(reserve2);

@@ -8,7 +8,7 @@ namespace Air_Simulation
 {
     class Simulation
     {
-        public const string airportName = "Purgatory";
+        public const string AirportName = "Purgatory";
         public static bool flagStop = false;
         public void HelloByTime()
         {
@@ -29,7 +29,7 @@ namespace Air_Simulation
 
         public void ArportSim()
         {
-            Console.WriteLine($"Welcome to the airport {airportName}. Introduce youreself, please!");
+            Console.WriteLine($"Welcome to the airport {AirportName}. Introduce youreself, please!");
             Console.WriteLine("Input your lastname:");
             string lastname = Console.ReadLine();
             Console.WriteLine("Input your name:");

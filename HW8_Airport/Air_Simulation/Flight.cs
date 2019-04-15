@@ -8,7 +8,7 @@ namespace Air_Simulation
 {
     class Flight
     {
-        public const string placeAirport = "Minsk";
+        public const string PlaceAirport = "Minsk";
         public string placeDeparture { get; set; }
         public string placeDestination { get; set; }
 
@@ -24,7 +24,7 @@ namespace Air_Simulation
         }
         public Flight(string placeDestination)
         {
-            this.placeDeparture = placeAirport;
+            this.placeDeparture = PlaceAirport;
             this.placeDestination = placeDestination;
         }
         public Flight ChooseFlight(string destiny)
@@ -35,7 +35,7 @@ namespace Air_Simulation
                 if (destiny.Equals(dest))
                 {
                     air.placeDestination = destiny;
-                    air.placeDeparture = placeAirport;
+                    air.placeDeparture = PlaceAirport;
                 }
             }
             return air;
