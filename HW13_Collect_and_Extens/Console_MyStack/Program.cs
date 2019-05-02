@@ -21,6 +21,15 @@ namespace Console_MyStack
             var second = stack.Peek();
             Console.WriteLine(second);
 
+            TypeStack<int> typeStack = new TypeStack<int>();
+            typeStack.Push(3);
+            typeStack.Push(5);
+            typeStack.Push(7);
+            typeStack.Push(9);
+            typeStack.Push(11);
+            typeStack.Push(13);
+            Console.WriteLine(typeStack.Count());
+
             Console.ReadLine();
         }
     }
