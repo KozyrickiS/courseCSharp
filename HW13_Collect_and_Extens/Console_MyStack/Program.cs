@@ -30,6 +30,9 @@ namespace Console_MyStack
             typeStack.Push(13);
             Console.WriteLine(typeStack.Count());
 
+            stack.GetCapacity();
+            typeStack.GetCapacity();
+
             Console.ReadLine();
         }
     }
