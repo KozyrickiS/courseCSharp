@@ -10,6 +10,11 @@ namespace Pizza_Delivery
     {
         static void Main(string[] args)
         {
+            PizzaOrder order = new PizzaOrder();
+            order.HelloByTime();
+            order.OrderSimulation();
+
+            Console.ReadKey();
         }
     }
 }
