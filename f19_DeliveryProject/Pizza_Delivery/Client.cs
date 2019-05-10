@@ -12,13 +12,13 @@ namespace Pizza_Delivery
         public string Name { get; set; }
         public string Midlname { get; set; }
         public string HomeAddress { get; set; }
+        public string Email { get; set; }
 
-        public Client(string lastname, string name, string midlname, string address)
+        public Client(string lastname, string name, string midlname)
         {
             this.Lastname = lastname;
             this.Name = name;
             this.Midlname = midlname;
-            this.HomeAddress = address;
         }
     }
 }
