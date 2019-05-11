@@ -12,6 +12,8 @@ namespace Pizza_Delivery
         Stack<Pizza> pizzasStack = new Stack<Pizza>();
 
         public const string PizzeriaName = "UncleBob";
+
+        Order orderForCoose = new Order(0.0, new Stack<Pizza>());
         public void HelloByTime()
         {
             TimeSpan time = DateTime.Now.TimeOfDay;
@@ -60,29 +62,76 @@ namespace Pizza_Delivery
             int.TryParse(Console.ReadLine(), out int method);
             if (method == 2)
             {
-                foreach (KeyValuePair<double, Pizza> keyValue in order.pizzaPrices)
+                Order orderChooseList = ChooseFromList();
+                foreach (Pizza element in orderChooseList.Pizzas)
                 {
-                    Console.WriteLine($"Pizza {keyValue.Value} - price: {keyValue.Key}");
+                    order.Pizzas.Push(element);
                 }
+                order.Price += orderChooseList.Price;
             }
             else if (method == 1)
             {
-                Console.WriteLine("Please, enter name of pizza");
-                string pizzaName = Console.ReadLine();
-                foreach (KeyValuePair<double, Pizza> keyValue in order.pizzaPrices)
+                Order orderChooseName = ChooseByName();
+                foreach (Pizza element in orderChooseName.Pizzas)
                 {
-                    if (pizzaName.Equals(keyValue.Value.ToString()))
-                    {
-                        Console.WriteLine($"Pizza's {keyValue.Value} price is: {keyValue.Key}");
-                    }
+                    order.Pizzas.Push(element);
                 }
+                order.Price += orderChooseName.Price;
             }
             else if (method != 1 && method != 2)
             {
                 Console.WriteLine("We don't understand you");
                 return;
             }
+            Console.WriteLine("List of pizzas: ");
+        }
 
+        private Order ChooseFromList()
+        {
+            Order order = new Order(orderPrice, pizzasStack);
+            Console.WriteLine("List of pizzas: ");
+            for (int i = 0; i < order.pizzaPrices.Length; i++)
+            {
+                Console.WriteLine($"{order.pizzaPrices[i].id}. Pizza {order.pizzaPrices[i].pizzaName} - price: {order.pizzaPrices[i].price}");
+            }
+            Console.WriteLine("Input the numbers of pizza's you want to by(like 1 3 5)");
+            string numbLine = Console.ReadLine();
+            string[] numbsArray = numbLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < numbsArray.Length; i++)
+            {
+                int.TryParse(numbsArray[i], out int pizzaNumber);
+                foreach (MenuPrice element in order.pizzaPrices)
+                {
+                    if (pizzaNumber == element.id)
+                    {
+                        order.Pizzas.Push(element.pizzaName);
+                        order.Price += element.price;
+                    }
+                }
+            }
+            return order;
+        }
+
+        private Order ChooseByName()
+        {
+            Console.WriteLine("Please, enter name of pizza");
+            string pizzaName = Console.ReadLine();
+            for (int i = 0; i < orderForCoose.pizzaPrices.Length; i++)
+            {
+                if (pizzaName.Equals(orderForCoose.pizzaPrices[i].pizzaName.ToString()))
+                {
+                    Console.WriteLine($"Pizza's {orderForCoose.pizzaPrices[i].pizzaName} price is: {orderForCoose.pizzaPrices[i].price}");
+                    orderForCoose.Pizzas.Push(orderForCoose.pizzaPrices[i].pizzaName);
+                    orderForCoose.Price += orderForCoose.pizzaPrices[i].price;
+                }
+            }
+            Console.WriteLine("Do you want to buy more pizza? \n1.Yes \n2.No");
+            int.TryParse(Console.ReadLine(), out int chosenMethod);
+            if (chosenMethod == 1)
+            {
+                ChooseByName();
+            }
+            return orderForCoose;
         }
     }
 }

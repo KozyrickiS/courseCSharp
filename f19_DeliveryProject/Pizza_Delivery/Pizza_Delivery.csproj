@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="MenuPrice.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Pizza.cs" />
     <Compile Include="PizzaOrder.cs" />
