@@ -47,11 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="ClientExtentions.cs" />
+    <Compile Include="Discount.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MenuPrice.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Pizza.cs" />
     <Compile Include="PizzaOrder.cs" />
+    <Compile Include="PizzeriaDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShareAction.cs" />

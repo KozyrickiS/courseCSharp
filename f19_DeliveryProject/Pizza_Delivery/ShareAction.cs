@@ -35,6 +35,7 @@ namespace Pizza_Delivery
         }
         private static Order ShareForMonday()
         {
+            Logger.Log.Info($"Start share action 'ShareForMonday'");
             Stack<Pizza> pizzas = new Stack<Pizza>();
             Order shareOrder = new Order(0.0, pizzas);
             Console.Write($"pizza {Pizza.Napoletana} for price {PriceForMonday}");
@@ -46,19 +47,22 @@ namespace Pizza_Delivery
                 shareOrder.Pizzas.Push(Pizza.Napoletana);
                 shareOrder.Price = PriceForMonday;
             }
-            else if (chosenMethod != 1 && chosenMethod != 2)
-            {
-                Console.WriteLine("We don't understand you. maybe you are want to have an order");
-            }
-            else
+            else if (chosenMethod == 2)
             {
                 Console.WriteLine("Okay. We are have many various pizza that you can have to order");
             }
+            else
+            {
+                Logger.Log.Error($"In 'ShareForMonday' incorrect number of chosen method");
+                Console.WriteLine("We don't understand you. maybe you are want to have an order");
+            }
+            Logger.Log.Info($"End share action 'ShareForMonday'");
             return shareOrder;
         }
 
         private static Order ShareForFriday()
         {
+            Logger.Log.Info($"Start share action 'ShareForFriday'");
             Stack<Pizza> pizzas = new Stack<Pizza>();
             Order shareOrder = new Order(0.0, pizzas);
             Console.Write($"pizza {Pizza.Calzone} and {Pizza.Four_Cheeses} for special price {PriceForFriday} and get {Pizza.Margherita} for free");
@@ -72,19 +76,22 @@ namespace Pizza_Delivery
                 shareOrder.Pizzas.Push(Pizza.Margherita);
                 shareOrder.Price = PriceForFriday;
             }
-            else if (chosenMethod != 1 && chosenMethod != 2)
-            {
-                Console.WriteLine("We don't understand you. maybe you are want to have an order");
-            }
-            else
+            else if (chosenMethod == 2)
             {
                 Console.WriteLine("Okay. We are have many various pizza that you can have to order");
             }
+            else
+            {
+                Logger.Log.Error($"In 'ShareForFriday' incorrect number of chosen method");
+                Console.WriteLine("We don't understand you. maybe you are want to have an order");
+            }
+            Logger.Log.Info($"End share action 'ShareForFriday'");
             return shareOrder;
         }
 
         private static Order ShareForSaturday()
         {
+            Logger.Log.Info($"Start share action 'ShareForSaturday'");
             Stack<Pizza> pizzas = new Stack<Pizza>();
             Order shareOrder = new Order(0.0, pizzas);
             Console.Write($"pizza {Pizza.Americana} and {Pizza.Carbonara} for special price {PriceForSaturday}");
@@ -97,19 +104,22 @@ namespace Pizza_Delivery
                 shareOrder.Pizzas.Push(Pizza.Carbonara);
                 shareOrder.Price = PriceForSaturday;
             }
-            else if (chosenMethod != 1 && chosenMethod != 2)
-            {
-                Console.WriteLine("We don't understand you. maybe you are want to have an order");
-            }
-            else
+            else if (chosenMethod == 2)
             {
                 Console.WriteLine("Okay. We are have many various pizza that you can have to order");
             }
+            else
+            {
+                Logger.Log.Error($"In 'ShareForSaturday' incorrect number of chosen method");
+                Console.WriteLine("We don't understand you. maybe you are want to have an order");
+            }
+            Logger.Log.Info($"End share action 'ShareForSaturday'");
             return shareOrder;
         }
 
         private static Order ShareForElseDays()
         {
+            Logger.Log.Info($"Start share action 'ShareForElseDays'");
             Stack<Pizza> pizzas = new Stack<Pizza>();
             Order shareOrder = new Order(0.0, pizzas);
             Console.Write($"pizza {Pizza.UncleBobies_Pizza} for special price {PriceForElseDays}");
@@ -121,14 +131,16 @@ namespace Pizza_Delivery
                 shareOrder.Pizzas.Push(Pizza.UncleBobies_Pizza);
                 shareOrder.Price = PriceForElseDays;
             }
-            else if (chosenMethod != 1 && chosenMethod != 2)
-            {
-                Console.WriteLine("We don't understand you. maybe you are want to have an order");
-            }
-            else
+            else if (chosenMethod == 2)
             {
                 Console.WriteLine("Okay. We are have many various pizza that you can have to order");
             }
+            else
+            {
+                Logger.Log.Error($"In 'ShareForElseDays' incorrect number of chosen method");
+                Console.WriteLine("We don't understand you. maybe you are want to have an order");
+            }
+            Logger.Log.Info($"End share action 'ShareForElseDays'");
             return shareOrder;
         }
     }

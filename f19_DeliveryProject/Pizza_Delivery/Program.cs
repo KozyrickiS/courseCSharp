@@ -10,9 +10,12 @@ namespace Pizza_Delivery
     {
         static void Main(string[] args)
         {
+            Logger.InitLogger();
+            Logger.Log.Info($"Start programm {System.Reflection.Assembly.GetEntryAssembly()}");
             PizzaOrder order = new PizzaOrder();
             order.HelloByTime();
             order.OrderSimulation();
+            Logger.Log.Info($"Successful completed { System.Reflection.Assembly.GetEntryAssembly()}");
 
             Console.ReadKey();
         }
