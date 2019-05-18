@@ -49,6 +49,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="ClientExtentions.cs" />
     <Compile Include="Discount.cs" />
+    <Compile Include="HelloMessage.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MenuPrice.cs" />
     <Compile Include="Order.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Pizza_Delivery
@@ -12,9 +13,14 @@ namespace Pizza_Delivery
         {
             Logger.InitLogger();
             Logger.Log.Info($"Start programm {System.Reflection.Assembly.GetEntryAssembly()}");
+            HelloMessage hello = new HelloMessage();
+            hello.ByTime();
             PizzaOrder order = new PizzaOrder();
-            order.HelloByTime();
-            order.OrderSimulation();
+            Thread orderThread = new Thread(new ThreadStart(order.OrderSimulation));
+            orderThread.Name = "Thread " + order.ToString();
+            Logger.Log.Info($"Start Thread  '{orderThread.Name}'");
+            orderThread.Start();
+
             Logger.Log.Info($"Successful completed { System.Reflection.Assembly.GetEntryAssembly()}");
 
             Console.ReadKey();

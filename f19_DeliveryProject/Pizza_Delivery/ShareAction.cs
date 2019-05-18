@@ -12,26 +12,28 @@ namespace Pizza_Delivery
         private const double PriceForFriday = 24.99;
         private const double PriceForSaturday = 19.99;
         private const double PriceForElseDays = 13.99;
-
+        delegate Order ShareOperation();
         public static Order Share()
         {
+            ShareOperation operation;
             DayOfWeek dayOfWeek = DateTime.Now.DayOfWeek;
             if (dayOfWeek.Equals(DayOfWeek.Monday))
             {
-                return ShareForMonday();
+                operation = ShareForMonday;
             }
             else if (dayOfWeek.Equals(DayOfWeek.Friday))
             {
-                return ShareForFriday();
+                operation = ShareForFriday;
             }
             else if (dayOfWeek.Equals(DayOfWeek.Saturday))
             {
-                return ShareForSaturday();
+                operation = ShareForSaturday;
             }
             else
             {
-                return ShareForElseDays();
+                operation = ShareForElseDays;
             }
+            return operation();
         }
         private static Order ShareForMonday()
         {

@@ -4,38 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 
 namespace Pizza_Delivery
 {
     class PizzaOrder
     {
-        double orderPrice = 0.0;
-        Stack<Pizza> pizzasStack = new Stack<Pizza>();
+        Order order = new Order(0.0, new Stack<Pizza>());
         Order orderForChoose = new Order(0.0, new Stack<Pizza>());
-
+        static Mutex mutexObj = new Mutex();
         public const string PizzeriaName = "UncleBob";
 
         Order orderForCoose = new Order(0.0, new Stack<Pizza>());
-        public void HelloByTime()
-        {
-            TimeSpan time = DateTime.Now.TimeOfDay;
-            if (time.Hours > 5 && time.Hours < 12)
-            {
-                Console.Write("Good morning! ");
-            }
-            else if (time.Hours >= 12 && time.Hours <= 19)
-            {
-                Console.Write("Good day! ");
-            }
-            else
-            {
-                Console.Write("Good evening! ");
-            }
-        }
 
         public void OrderSimulation()
         {
-            Order order = new Order(orderPrice, pizzasStack);
             Console.WriteLine($"Welcome to the pizzeria {PizzeriaName}. Introduce youreself, please!");
             Console.WriteLine("Input your lastname:");
             string lastname = Console.ReadLine();
@@ -58,7 +41,7 @@ namespace Pizza_Delivery
             {
                 Logger.Log.Error($"Client {client.Lastname} {client.Name} entered incorrect symbol in start of ordering");
                 Console.WriteLine("We don't understand you");
-                return;
+                throw new Exception("Incorrect numbers of action. Can input only 1 or 2");
             }
             Console.Write($"Today we are ready to recommend you our special share: ");
             order = ShareAction.Share();
@@ -69,21 +52,29 @@ namespace Pizza_Delivery
             {
                 Logger.Log.Info($"Client {client.Lastname} {client.Name} start choose pizza from list for order");
                 Order orderChooseList = ChooseFromList();
+                mutexObj.WaitOne();
                 foreach (Pizza element in orderChooseList.Pizzas)
                 {
                     order.Pizzas.Push(element);
+                    Logger.Log.Info($"{Thread.CurrentThread.Name} : {element}");
+                    Thread.Sleep(10);
                 }
                 order.Price += orderChooseList.Price;
+                mutexObj.ReleaseMutex();
             }
             else if (method == 1)
             {
                 Logger.Log.Info($"Client {client.Lastname} {client.Name} start entering pizza for order");
                 Order orderChooseName = ChooseByName();
+                mutexObj.WaitOne();
                 foreach (Pizza element in orderChooseName.Pizzas)
                 {
                     order.Pizzas.Push(element);
+                    Logger.Log.Info($"{Thread.CurrentThread.Name} : {element}");
+                    Thread.Sleep(10);
                 }
                 order.Price += orderChooseName.Price;
+                mutexObj.ReleaseMutex();
             }
             else if (method == 3)
             {
@@ -95,7 +86,7 @@ namespace Pizza_Delivery
             {
                 Logger.Log.Error($"Client {client.Lastname} {client.Name} entered incorrect symbol in choose type of order");
                 Console.WriteLine("We don't understand you");
-                return;
+                throw new Exception("Incorrect numbers of action. Can input only 1, 2 or 3");
             }
             Console.Write("List of pizzas in your order: ");
             foreach (Pizza element in order.Pizzas)
@@ -112,9 +103,9 @@ namespace Pizza_Delivery
             {
                 client.Email = new MailAddress(emailaddress);
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                Console.WriteLine("This is incorrect email");
+                Console.WriteLine(ex.Message);
                 Logger.Log.Error($"Client {client.Lastname} {client.Name} entered incorrect email");
                 return;
             }
@@ -126,8 +117,6 @@ namespace Pizza_Delivery
                 Console.WriteLine("Please, input a number of discount");
                 int.TryParse(Console.ReadLine(), out int discount);
                 client.TakeDiscount(discount);
-
-
             }
             Console.WriteLine("That's all, folks");
         }
@@ -149,13 +138,13 @@ namespace Pizza_Delivery
                 if (pizzaNumber == 0)
                 {
                     Logger.Log.Error($"Client entered incorrect numbers of pizza's in ChooseFromList()");
+                    throw new Exception("Incorrect numbers of action");
                 }
                 foreach (MenuPrice element in menus)
                 {
                     if (pizzaNumber == element.id)
                     {
-                        orderForChoose.Pizzas.Push(element.pizzaName);
-                        orderForChoose.Price += element.price;
+                        orderForChoose.Add(element.pizzaName);
                     }
                 }
             }
@@ -173,8 +162,7 @@ namespace Pizza_Delivery
                 if (pizzaName.Equals(menus[i].pizzaName.ToString()))
                 {
                     Console.WriteLine($"Pizza's {menus[i].pizzaName} price is: {menus[i].price}");
-                    orderForCoose.Pizzas.Push(menus[i].pizzaName);
-                    orderForCoose.Price += menus[i].price;
+                    orderForChoose.Add(menus[i].pizzaName);
                 }
             }
             Console.WriteLine("Do you want to buy more pizza? \n1.Yes \n2.No");
@@ -186,6 +174,7 @@ namespace Pizza_Delivery
             if (chosenMethod != 1 && chosenMethod != 2)
             {
                 Logger.Log.Error($"Client entered incorrect numbers of action in ChooseByName()");
+                throw new Exception("Incorrect numbers of action. Can input only 1 or 2");
             }
             Logger.Log.Info($"Client end entering pizza");
             return orderForCoose;
