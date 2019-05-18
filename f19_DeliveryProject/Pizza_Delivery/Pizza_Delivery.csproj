@@ -52,6 +52,7 @@
     <Compile Include="HelloMessage.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MenuPrice.cs" />
+    <Compile Include="Notice.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Pizza.cs" />
     <Compile Include="PizzaOrder.cs" />

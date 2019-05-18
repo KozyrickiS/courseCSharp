@@ -19,16 +19,8 @@ namespace Pizza_Delivery
 
         public void OrderSimulation()
         {
-            Console.WriteLine($"Welcome to the pizzeria {PizzeriaName}. Introduce youreself, please!");
-            Console.WriteLine("Input your lastname:");
-            string lastname = Console.ReadLine();
-            Console.WriteLine("Input your name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("Input your midname:");
-            string midname = Console.ReadLine();
-            Console.WriteLine($"Hello, {name} {midname}.");
-            Client client = new Client(lastname, name, midname);
-            Logger.Log.Info($"Client lastname - {client.Lastname}, name - {client.Name}, midname - {client.Midlname} are created");
+            Client client = new Client();
+            client = client.ClientRegistration();
             Console.WriteLine("Do you want to order some pizza?  \n1.Yes \n2.No");
             int.TryParse(Console.ReadLine(), out int chosenMethod);
             if (chosenMethod == 2)
@@ -95,20 +87,7 @@ namespace Pizza_Delivery
             }
             Console.WriteLine("");
             Console.WriteLine($"Price of your order is: {order.Price}");
-            Console.WriteLine("Please, tell the address where to deliver the order: ");
-            client.HomeAddress = Console.ReadLine();
-            Console.WriteLine("Please, tell Email where will be sent information about order status: ");
-            string emailaddress = Console.ReadLine();
-            try
-            {
-                client.Email = new MailAddress(emailaddress);
-            }
-            catch (FormatException ex)
-            {
-                Console.WriteLine(ex.Message);
-                Logger.Log.Error($"Client {client.Lastname} {client.Name} entered incorrect email");
-                return;
-            }
+            
             client.ClientOrder = order;
             Console.WriteLine("Do you have a discount number? \n1.Yes \n2.No");
             int.TryParse(Console.ReadLine(), out int chosenDiscont);
@@ -118,6 +97,7 @@ namespace Pizza_Delivery
                 int.TryParse(Console.ReadLine(), out int discount);
                 client.TakeDiscount(discount);
             }
+            //Notice.SendEmail(client);
             Console.WriteLine("That's all, folks");
         }
 
