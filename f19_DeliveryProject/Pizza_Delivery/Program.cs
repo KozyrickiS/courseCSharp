@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,10 +21,8 @@ namespace Pizza_Delivery
             Thread orderThread = new Thread(new ThreadStart(order.OrderSimulation));
             orderThread.Name = "Thread " + order.ToString();
             Logger.Log.Info($"Start Thread  '{orderThread.Name}'");
-            orderThread.Start();
-
+            orderThread.Start();          
             Logger.Log.Info($"Successful completed { System.Reflection.Assembly.GetEntryAssembly()}");
-
             Console.ReadKey();
         }
     }

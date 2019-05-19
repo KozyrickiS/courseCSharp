@@ -80,14 +80,19 @@ namespace Pizza_Delivery
                 Console.WriteLine("We don't understand you");
                 throw new Exception("Incorrect numbers of action. Can input only 1, 2 or 3");
             }
-            Console.Write("List of pizzas in your order: ");
-            foreach (Pizza element in order.Pizzas)
+            order.Check();
+            Console.WriteLine("\n1.Go to discount \n2.Delete some pizza from order");
+            int.TryParse(Console.ReadLine(), out int methodToCheckOrDel);
+            if (methodToCheckOrDel == 2)
             {
-                Console.Write(element + " ");
+                Console.WriteLine("Input the numbers of pizza from your order(like 1 2 3)");
+                string pizzaNumbers = Console.ReadLine();
+                order.Withdraw(pizzaNumbers);
+                Console.Write("Now ");
+                order.Check();
             }
-            Console.WriteLine("");
-            Console.WriteLine($"Price of your order is: {order.Price}");
-            
+            if (methodToCheckOrDel != 1 && methodToCheckOrDel != 2)
+            { }
             client.ClientOrder = order;
             Console.WriteLine("Do you have a discount number? \n1.Yes \n2.No");
             int.TryParse(Console.ReadLine(), out int chosenDiscont);
@@ -97,17 +102,23 @@ namespace Pizza_Delivery
                 int.TryParse(Console.ReadLine(), out int discount);
                 client.TakeDiscount(discount);
             }
-            //Notice.SendEmail(client);
+            else
+            {
+                Console.WriteLine($"Thank you for choosing {PizzeriaName}. Your order already completed");
+            }
+            Notice.SendEmail(client);
             Console.WriteLine("That's all, folks");
+            Console.ReadKey();
         }
 
         private Order ChooseFromList()
         {
             MenuPrice[] menus = PizzeriaDB.MenuDB();
             Console.WriteLine("List of pizzas: ");
-            for (int i = 0; i < menus.Length; i++)
+            List<JsonMenuPrice> menuPrices = JsonFile.ReadFrom(JsonFile.jsonFile);
+            foreach (JsonMenuPrice menuPrice in menuPrices)
             {
-                Console.WriteLine($"{menus[i].id}. Pizza {menus[i].pizzaName} - price: {menus[i].price}");
+                Console.WriteLine(menuPrice.id + ". Pizza " + menuPrice.pizzaName + " - price: " + menuPrice.price);
             }
             Console.WriteLine("Input the numbers of pizza's you want to by(like 1 3 5)");
             string numbLine = Console.ReadLine();

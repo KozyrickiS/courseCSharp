@@ -19,6 +19,17 @@ namespace Pizza_Delivery
             this.Pizzas = pizzas;
             this.Price = price;
         }
+        public void Check()
+        {
+            Console.WriteLine("Your order is:");
+            int number = 1;
+            foreach (Pizza pizza in Pizzas)
+            {
+                Console.WriteLine($"{number}. {pizza}");
+                number++;
+            }
+            Console.WriteLine($"Order price: {Price}");
+        }
         public void Add(Pizza pizza)
         {
             Pizzas.Push(pizza);
@@ -31,35 +42,54 @@ namespace Pizza_Delivery
                 }
             }
         }
-        public void Withdraw(Pizza pizza)
+        public void Withdraw(string pizzaNumbers)
         {
+            Stack<Pizza> deletePizzas = new Stack<Pizza>();
+            string[] numbsArray = pizzaNumbers.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);            
+            for (int i = 0; i < numbsArray.Length; i++)
+            {
+                int.TryParse(numbsArray[i], out int pizzaNumb);
+                int number = 1;
+                foreach (Pizza pizza in Pizzas)
+                {
+                    if (number == pizzaNumb)
+                    {
+                        deletePizzas.Push(pizza);
+                    }
+                    number++;
+                }
+            }
             Stack<Pizza> tempPizzas = new Stack<Pizza>();
             int count = Pizzas.Count;
             Pizza p = new Pizza();
-            for (int i = 0; i < count; i++)
+            foreach(Pizza pizza in deletePizzas)
             {
-                p = Pizzas.Pop();
-                if (!p.Equals(pizza))
+                for (int i = 0; i < count; i++)
                 {
-                    tempPizzas.Push(p);
-                }
-                else
-                {
-                    foreach (MenuPrice pM in PizzeriaDB.MenuDB())
+                    p = Pizzas.Pop();
+                    if (!p.Equals(pizza))
                     {
-                        if (pizza.Equals(pM.pizzaName))
+                        tempPizzas.Push(p);
+                    }
+                    else
+                    {
+                        foreach (MenuPrice pM in PizzeriaDB.MenuDB())
                         {
-                            Price -= pM.price;
-                            WithdrawPizza?.Invoke($"Pizza {pM.pizzaName} added to order with price {pM.price}");
+                            if (pizza.Equals(pM.pizzaName))
+                            {
+                                Price -= pM.price;
+                                WithdrawPizza?.Invoke($"Pizza {pM.pizzaName} deleted from order with price {pM.price}");
+                            }
                         }
                     }
                 }
-            }
-            count = tempPizzas.Count;
-            for (int i = 0; i < count; i++)
-            {
-                Pizzas.Push(tempPizzas.Pop());
+                count = tempPizzas.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    Pizzas.Push(tempPizzas.Pop());
+                }
             }
         }
+            
     }
 }
