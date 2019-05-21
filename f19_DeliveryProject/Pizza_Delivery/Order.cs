@@ -89,7 +89,6 @@ namespace Pizza_Delivery
                     Pizzas.Push(tempPizzas.Pop());
                 }
             }
-        }
-            
+        }            
     }
 }

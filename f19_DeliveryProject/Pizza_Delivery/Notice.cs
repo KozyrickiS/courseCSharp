@@ -26,8 +26,7 @@ namespace Pizza_Delivery
             smtp.Credentials = new NetworkCredential(FromMail, FromMailPass);            
             MailMessage message = new MailMessage();
             message.From = new MailAddress(FromMail);
-            message.To.Add(client.Email);
-            
+            message.To.Add(client.Email);            
             message.Subject = "Pizzeria UncleBob";
             message.Body += $"Dear {client.Name} {client.Midlname}. Your order is complete.\n" +
                 $"You ordering ";
@@ -59,7 +58,6 @@ namespace Pizza_Delivery
             MailMessage message = new MailMessage();
             message.From = new MailAddress(FromMail);
             message.To.Add(client.Email);
-
             message.Subject = "Pizzeria UncleBob";
             message.Body += $"Dear {client.Name} {client.Midlname}. Your order is delivered.\n" +
                 $"You ordering ";
@@ -91,7 +89,6 @@ namespace Pizza_Delivery
             MailMessage message = new MailMessage();
             message.From = new MailAddress(FromMail);
             message.To.Add(client.Email);
-
             message.Subject = "Pizzeria UncleBob";
             message.Body += $"Dear {client.Name} {client.Midlname}. Your order is paid.\n";
             message.Body += "Thank you for choosing UncleBob";
