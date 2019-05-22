@@ -19,6 +19,7 @@ namespace Pizza_Delivery
 
         public void OrderSimulation()
         {
+            JsonFile.WriteTo(JsonFile.jsonFile, PizzeriaDB.MenuForJson());
             Client client = new Client();
             client = client.ClientRegistration();
             Console.WriteLine("Do you want to order some pizza?  \n1.Yes \n2.No");
